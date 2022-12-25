@@ -1,0 +1,59 @@
+﻿<Window x:Class="BeautySalon.Presentation.Windows.ClientVisitInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautySalon.Presentation.Windows"
+        mc:Ignorable="d"
+        Title="ClientVisitInfoWindow" Height="450" Width="800" FontFamily="Tahoma" FontSize="20" Background="#E1E4FF">
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF4A6D">Записей не найдено</TextBlock>
+        <ListView Name="listViewClientVisit" Background="#E1E4FF">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=StartTime, StringFormat='dd.MM.yyyy'}">Дата Посещения</GridViewColumn>
+                    <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=StartTime, StringFormat='HH.mm'}">Время посещения</GridViewColumn>
+                    <GridViewColumn Header="Услуги" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Width="50" Height="50" Grid.Column="0" Grid.RowSpan="2" Source="{Binding Service.MainImagePath}"></Image>
+
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="10, 0, 0, 0">
+                                        <TextBlock Text="{Binding Service.Title}"></TextBlock>
+                                        <DockPanel>
+                                            <TextBlock Text="{Binding Service.Cost}"  Foreground="#FF4A6D"></TextBlock>
+                                            <TextBlock Text=" рублей за "></TextBlock>
+                                            <TextBlock Text="{Binding Service.DurationInSeconds}"  Foreground="#FF4A6D"></TextBlock>
+                                            <TextBlock Text=" минут"></TextBlock>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                    <DockPanel VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="1" Margin="10, 0, 0, 0">
+                                        <Button Content="Редактировать" Background="Transparent"></Button>
+                                        <Button Content="Удалить" Background="Transparent"></Button>
+                                    </DockPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+    </Grid>
+</Window>

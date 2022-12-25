@@ -1,0 +1,72 @@
+﻿<Window x:Class="BeautySalon.Presentation.Windows.AddClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeautySalon.Presentation.Windows"
+        mc:Ignorable="d"
+        Title="AddClientWindow" Height="auto" Width="800" FontFamily="Tahoma" FontSize="20" Background="#E1E4FF" Foreground="#FF4A6D">
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical">
+            <GroupBox Header="Идентификатор">
+                <TextBlock Text="Автоматический" FontSize="20"/>
+            </GroupBox>
+
+            <GroupBox Header="Фамилия">
+                <TextBox Name="lastNameTextBox" FontSize="20" MaxLength="50" PreviewTextInput="FullNameTextBox_PreviewTextInput"/>
+            </GroupBox>
+
+            <GroupBox Header="Имя">
+                <TextBox Name="firstNameTextBox" FontSize="20" MaxLength="50" PreviewTextInput="FullNameTextBox_PreviewTextInput"/>
+            </GroupBox>
+
+            <GroupBox Header="Отчество">
+                <TextBox Name="patronymicNameTextBox" FontSize="20" MaxLength="50" PreviewTextInput="FullNameTextBox_PreviewTextInput"/>
+            </GroupBox>
+
+            <GroupBox Header="Email">
+                <TextBox Name="emailTextBox" FontSize="20"/>
+            </GroupBox>
+
+            <GroupBox Header="Номер телефона">
+                <TextBox Name="phoneTextBox" FontSize="20" PreviewTextInput="phoneTextBox_PreviewTextInput" MaxLength="11"/>
+            </GroupBox>
+
+            <GroupBox Header="Дата рождение">
+                <DatePicker Name="birthdayTextBox" FontSize="20"/>
+            </GroupBox>
+
+            <GroupBox Header="Теги" MinHeight="200" MaxHeight="200">
+                <ListView Name="tagListView" Grid.Row="0" SelectionMode="Single">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Title}" Header="Название"/>
+                            <GridViewColumn Header="Цвет" Width="60" >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Color}" Background="{Binding HexColor}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </GroupBox>
+
+            <GroupBox Header="Пол">
+                <ComboBox Name="genderComboBox" SelectedIndex="0">
+                    <ComboBoxItem Content="Мужской"/>
+                    <ComboBoxItem Content="Женский"/>
+                </ComboBox>
+            </GroupBox>
+
+            <DockPanel>
+                <Image Name="clientLogoImage" Width="200" Height="200"  HorizontalAlignment="Left"/>
+                <Button Name="selectClientImageButton" Height="40" Content="Выбрать изображение" Margin="0, 30, 0, 30" HorizontalAlignment="Right" Click="selectClientImageButton_Click"/>
+            </DockPanel>
+
+            <Button Name="addClientButton" Content="Добавить клиента" Background="White" Foreground="#FF4A6D" Click="addClientButton_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+
+</Window>
